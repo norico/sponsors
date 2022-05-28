@@ -87,8 +87,7 @@ class SPONSORS
         //TODO : upgrade code !!!
         printf( '<input type="hidden" name="%s_nonce" value="%s" />', $this->redirect_to, esc_attr( wp_create_nonce( plugin_basename( __FILE__ ) ) ) );
         printf( '<p><label for="%s">%s:</label></p>', $this->redirect_to, esc_html__( 'Redirect URI', 'sponsors' ) );
-        printf( '<p><input class="regular-text" style="width:100%%;max-width:100%%" required="required" type="text" name="%s" id="%s" value="%s" /></p>',
-                $this->redirect_to, $this->redirect_to, esc_attr( get_post_meta( $post->ID, $this->redirect_to, true ) ) );
+        printf( '<p><input class="regular-text" style="width:100%%;max-width:100%%" required="required" type="text" name="%s" id="%s" value="%s" /></p>', $this->redirect_to, $this->redirect_to, esc_attr( get_post_meta( $post->ID, $this->redirect_to, true ) ) );
         printf( '<p><label for="%s">%s</label></p>', $this->target, esc_html__( 'Choose the target frame for your link.') );
         printf('<p><select name="_sponsors_target">');
         printf('<option value="_self" %s>%s</option>', selected( esc_attr( get_post_meta( $post->ID, $this->target, true )), '_self',false), __('Same window', 'sponsors') );
@@ -116,9 +115,7 @@ class SPONSORS
         }
         $redirect_value = $_POST[$this->redirect_to] ?? '';
         $target_value   = $_POST[$this->target] ?? '';
-
-        $count = intval(get_post_meta($post->ID, $this->meta_count, true )) ?? 0;
-
+        $count          = intval(get_post_meta($post->ID, $this->meta_count, true )) ?? 0;
         if ( $redirect_value ) {
             update_post_meta( $post->ID, $this->redirect_to, $redirect_value );
             update_post_meta( $post->ID, $this->meta_count, $count );
@@ -246,9 +243,9 @@ class SPONSORS
                 break;
             case "target" :
                 if ( $target ==='_new' )
-                    echo '<span title="'.$target.'" class="dashicons dashicons-fullscreen-alt"></span>';
+                    echo '<span title="'.$target.'"><img src="'. plugin_dir_url( __FILE__ ).'media/external.svg" width="24" height="24"></span>';
                 else
-                    echo '<span title="'.$target.'" class="dashicons dashicons-fullscreen-exit-alt"></span>';
+                    echo '<span title="'.$target.'"><img src="'. plugin_dir_url( __FILE__ ).'media/internal.svg" width="24" height="24"></span>';
                 break;
 
             case "order":

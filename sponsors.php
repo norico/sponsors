@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Sponsors
  * Description: Complete URL management system that allows you create, manage, and track outbound links from your site by using custom post types and 301 redirects.
- * Version: 1.0.2
+ * Version: 1.0.3
  * RequiresWP: 5.6
  * Requires PHP: 7.4.6
  * Text Domain: sponsors
@@ -54,7 +54,7 @@ class SPONSORS
     public function register_widget()
     {
         require_once (__DIR__.DIRECTORY_SEPARATOR."sponsors-widget.php");
-        $partnerWidget = new SponsorsWidget($this->meta_count);
+        $partnerWidget = new SponsorsWidget($this->meta_count, $this->target);
         register_widget( $partnerWidget );
     }
 

@@ -1,0 +1,29 @@
+#sponsors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+#sponsors.list {
+    display: block;
+}
+
+#sponsor {
+    align-self: center;
+}
+
+#sponsor img {
+    margin: 0px;
+    padding: 0px;
+    min-width: 150px;
+    max-width: 150px;
+}
+
+#sponsor p {
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    text-align: center;
+}

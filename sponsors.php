@@ -35,13 +35,17 @@ class SPONSORS
         add_action( 'pre_get_posts', array($this, 'columns_order') );
         add_filter( 'manage_edit-'.$this->slug.'_columns', array($this, 'columns_filter') );
         add_filter( 'manage_edit-'.$this->slug.'_sortable_columns', array($this, 'column_sortable') );
-        add_filter( 'manage_posts_columns', array($this, 'add_thumbnails_column') );
-        add_action( 'manage_posts_custom_column', array($this, 'columns_data') );
+
+
+        // FIXME : Column disappear on quick save ????
+        add_filter( 'manage_'.$this->slug.'_posts_columns', array($this, 'add_thumbnails_column') );
+        add_action( 'manage_'.$this->slug.'_posts_custom_column', array($this, 'columns_data') );
+        // END FIXME
+
         add_action( 'admin_enqueue_scripts', array($this, 'admin_enqueue_scripts') );
         add_action( 'wp_enqueue_scripts', array($this, 'enqueue_styles') );
         add_action( 'widgets_init', array($this, 'register_widget') );
         add_action( 'wp_dashboard_setup', array($this, 'add_dashboard_widget') );
-
     }
 
     public function add_dashboard_widget()
@@ -116,6 +120,7 @@ class SPONSORS
         $redirect_value = $_POST[$this->redirect_to] ?? '';
         $target_value   = $_POST[$this->target] ?? '';
         $count          = intval(get_post_meta($post->ID, $this->meta_count, true )) ?? 0;
+
         if ( $redirect_value ) {
             update_post_meta( $post->ID, $this->redirect_to, $redirect_value );
             update_post_meta( $post->ID, $this->meta_count, $count );
@@ -203,11 +208,9 @@ class SPONSORS
     public function add_thumbnails_column($columns)
     {
         if ( get_current_screen()->post_type === $this->slug ) {
-            return array_merge($columns, array('thumbnail' => esc_html__('Thumbnail')));
+            $columns = array_merge($columns, array('thumbnail' => esc_html__('Thumbnail')));
         }
-        else {
-            return $columns;
-        }
+        return $columns;
     }
 
     public function columns_data($column)
@@ -220,6 +223,7 @@ class SPONSORS
             'target' => array(),
             ),
         );
+        $thumbnail  = get_the_post_thumbnail($post->ID, $this->size, ['class' => 'img-fluid wp-post-image', 'title' => __('Thumbnail')]);
         $url        = get_post_meta( $post->ID, $this->redirect_to, true );
         $count      = get_post_meta( $post->ID, $this->meta_count, true );
         $target     = get_post_meta( $post->ID, $this->target, true );
@@ -237,7 +241,7 @@ class SPONSORS
             case "thumbnail" :
                 if ( get_current_screen()->post_type === $this->slug ){
                     echo '<div class="thumbnail">';
-                    the_post_thumbnail($this->size, ['class' => 'img-fluid wp-post-image', 'title' => __('Thumbnail')] );
+                    echo $thumbnail;
                     echo '</div>';
                 }
                 break;

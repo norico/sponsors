@@ -99,15 +99,15 @@ class SponsorsWidget extends \WP_Widget
         );
         query_posts( $sponsors_query_args );
 
-
         $class = !$instance["Thumbnail"] ? 'class="list"' : 'class="thumbnail"';
-
-        echo '<div id="sponsors" '.$class.'>';
-        while ( have_posts() ) : the_post();
+        if ( have_posts() ) :
             global $post;
-            require(__DIR__.DIRECTORY_SEPARATOR."template.php");
-        endwhile;
-        echo '</div>';
+            echo '<div id="sponsors" '.$class.'>';
+            while ( have_posts() ) : the_post();
+                require(__DIR__.DIRECTORY_SEPARATOR."template.php");
+            endwhile;
+            echo '</div>';
+        endif;
         echo $args['after_widget'];
         wp_reset_query();
     }

@@ -1,5 +1,5 @@
 <?php
-if ( $instance )
+if ( isset($instance) )
 {
     $title  = $post->post_title;
     $image  = has_post_thumbnail() ? get_the_post_thumbnail($post->ID, 'medium', array('alt'=> $post->post_title, 'title'=> $post->post_title)) : '<img src="'.plugin_dir_url(__FILE__).'placeholder.jpg" width="150" height="150" alt="'.$post->post_title.'">';
@@ -29,3 +29,4 @@ if ( $instance )
         html;
     }
 }
+

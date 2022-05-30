@@ -2,10 +2,14 @@
 /**
  * Plugin Name: Sponsors
  * Description: Complete URL management system that allows you create, manage, and track outbound links from your site by using custom post types and 301 redirects.
- * Version: 1.0.3
+ * Author: Norico
+ * Author URI: https://github.com/norico/sponsors
+ * Version: 1.0.4
  * RequiresWP: 5.6
  * Requires PHP: 7.4.6
  * Text Domain: sponsors
+ * @package WordPress
+ * @since 1.0.0
  */
 namespace app;
 

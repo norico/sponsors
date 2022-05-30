@@ -4,8 +4,6 @@ namespace app;
 
 class SponsorsWidget extends \WP_Widget
 {
-
-
     public function __construct($meta_count_key, $target) {
 
         $this->meta_count = $meta_count_key;

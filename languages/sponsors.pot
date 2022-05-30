@@ -1,0 +1,165 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Sponsors\n"
+"POT-Creation-Date: 2022-05-30 10:18+0200\n"
+"PO-Revision-Date: 2022-05-30 10:26+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: _e;__;esc_html__\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: sponsors-widget.php:14 sponsors-widget.php:89 sponsors.php:148
+#: sponsors.php:150 sponsors.php:151 sponsors.php:318
+msgid "Sponsors"
+msgstr "Partenaires"
+
+#: sponsors-widget.php:15
+msgid "Sponsors widget"
+msgstr "Widget Partenaires"
+
+#: sponsors.php:56
+msgid "Sponsors - Top 10"
+msgstr "Partenaires -Statistiques"
+
+#: sponsors.php:90
+msgid "URL Informations"
+msgstr "Informations sur l’URL"
+
+#: sponsors.php:98
+msgid "Redirect URI"
+msgstr "Rediriger vers"
+
+#: sponsors.php:100
+msgid "Choose the target frame for your link."
+msgstr "Sélectionnez la cible de votre lien."
+
+#: sponsors.php:102
+msgid "Same window"
+msgstr "Même fenêtre"
+
+#: sponsors.php:103
+msgid "New window"
+msgstr "Nouvelle fenêtre"
+
+#: sponsors.php:149
+msgid "Sponsor"
+msgstr "Partenaires"
+
+#: sponsors.php:152
+msgid "archives"
+msgstr "archives"
+
+#: sponsors.php:153
+msgid "attributes"
+msgstr "attributs d'ordre"
+
+#: sponsors.php:154
+msgid "parent_item_colon"
+msgstr ""
+
+#: sponsors.php:155
+msgid "All sponsors"
+msgstr "Tout les partenaires"
+
+#: sponsors.php:156
+msgid "Add new sponsors"
+msgstr "Ajouter un nouveau partenaire"
+
+#: sponsors.php:157
+msgid "edit_item"
+msgstr "modifier l'élément"
+
+#: sponsors.php:158
+msgid "update_item"
+msgstr "mise à jour"
+
+#: sponsors.php:159
+msgid "view_item"
+msgstr "voir l'élément"
+
+#: sponsors.php:160
+msgid "View sponsors page"
+msgstr "Voir la page"
+
+#: sponsors.php:161
+msgid "Search sponsors"
+msgstr "Rechercher"
+
+#: sponsors.php:162
+msgid "no sponsors."
+msgstr "aucun partenaire."
+
+#: sponsors.php:163
+msgid "no sponsors in trash."
+msgstr "aucun partenaire dans la corbeille."
+
+#: sponsors.php:164
+msgid "Logo"
+msgstr "Logo"
+
+#: sponsors.php:165
+msgid "Add logo"
+msgstr "Ajouter un logo"
+
+#: sponsors.php:166
+msgid "Remove logo"
+msgstr "Retirer le logo"
+
+#: sponsors.php:167
+msgid "Use logo"
+msgstr "Utiliser le logo"
+
+#: sponsors.php:168
+msgid "insert_into_item"
+msgstr "insérer dans l'élément"
+
+#: sponsors.php:169
+msgid "uploaded_to_this_item"
+msgstr "téléverser dans l'élément"
+
+#: sponsors.php:170
+msgid "items_list"
+msgstr ""
+
+#: sponsors.php:171
+msgid "items_list_navigation"
+msgstr ""
+
+#: sponsors.php:172
+msgid "filter_items_list"
+msgstr ""
+
+#: sponsors.php:215 sponsors.php:228
+msgid "Thumbnail"
+msgstr "Miniature"
+
+#: sponsors.php:279
+msgid "Redirect to"
+msgstr "Rediriger vers"
+
+#: sponsors.php:280
+msgid "Permalinks"
+msgstr "Lien permanant"
+
+#: sponsors.php:281
+msgid "Order"
+msgstr "Ordre"
+
+#: sponsors.php:282
+msgid "Target"
+msgstr "Cible"
+
+#: sponsors.php:283 sponsors.php:319
+msgid "Clicks"
+msgstr "Clics"
+
+#: sponsors.php:311
+msgid "There are no stats available yet!"
+msgstr "Il n'y a pas de statistiques pour l'instant!"

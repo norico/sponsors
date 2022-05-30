@@ -4,7 +4,7 @@
  * Description: Complete URL management system that allows you create, manage, and track outbound links from your site by using custom post types and 301 redirects.
  * Author: Norico
  * Author URI: https://github.com/norico/sponsors
- * Version: 1.0.4
+ * Version: 1.0.6
  * RequiresWP: 5.6
  * Requires PHP: 7.4.6
  * Text Domain: sponsors
@@ -28,7 +28,6 @@ class SPONSORS
     private string $icon                 = 'dashicons-admin-links';
     private array  $support              = array('title', 'thumbnail', 'page-attributes');
     private array  $size                 = array(48,48);
-
     private string $media_external       = "external.svg";
     private string $media_internal       = "internal.svg";
 
@@ -36,16 +35,15 @@ class SPONSORS
     public function __construct()
     {
         add_action( 'init', array($this, 'init') );
+        add_action( 'plugins_loaded', array($this,'load_language') );
         add_action( 'admin_menu', array($this, 'add_meta_box') );
         add_action( 'save_post', array($this, 'meta_box_save'),10,2 );
         add_action( 'template_redirect', array($this, 'template_redirect') );
         add_action( 'pre_get_posts', array($this, 'columns_order') );
         add_filter( 'manage_edit-'.$this->slug.'_columns', array($this, 'columns_filter') );
         add_filter( 'manage_edit-'.$this->slug.'_sortable_columns', array($this, 'column_sortable') );
-
         add_filter( 'manage_'.$this->slug.'_posts_columns' ,  array($this, 'add_columns') );
         add_action( 'manage_'.$this->slug.'_posts_custom_column' ,  array($this, 'columns_data'), 10, 2 );
-
         add_action( 'admin_enqueue_scripts', array($this, 'admin_enqueue_scripts') );
         add_action( 'wp_enqueue_scripts', array($this, 'enqueue_styles') );
         add_action( 'widgets_init', array($this, 'register_widget') );
@@ -66,10 +64,13 @@ class SPONSORS
         register_widget( $partnerWidget );
     }
 
+    public function load_language(){
+        load_plugin_textdomain( 'sponsors', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+    }
+
     public function init()
     {
         $this->create_custom_post_type();
-
     }
 
     public function enqueue_styles()

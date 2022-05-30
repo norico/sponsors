@@ -9,6 +9,7 @@ if ( isset($instance) )
 
     if ( is_user_logged_in() && current_user_can( 'edit_posts' ) )
     {
+        // show count values if user can edit post.
         $title = $title." [".$count."]";
     }
     if( $instance["Thumbnail"] ){

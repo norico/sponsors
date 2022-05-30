@@ -25,6 +25,9 @@ class SPONSORS
     private array  $support              = array('title', 'thumbnail', 'page-attributes');
     private array  $size                 = array(48,48);
 
+    private string $media_external       = "external.svg";
+    private string $media_internal       = "internal.svg";
+
 
     public function __construct()
     {
@@ -36,11 +39,8 @@ class SPONSORS
         add_filter( 'manage_edit-'.$this->slug.'_columns', array($this, 'columns_filter') );
         add_filter( 'manage_edit-'.$this->slug.'_sortable_columns', array($this, 'column_sortable') );
 
-
-        // FIXME : Column disappear on quick save ????
-        add_filter( 'manage_'.$this->slug.'_posts_columns', array($this, 'add_thumbnails_column') );
-        add_action( 'manage_'.$this->slug.'_posts_custom_column', array($this, 'columns_data') );
-        // END FIXME
+        add_filter( 'manage_'.$this->slug.'_posts_columns' ,  array($this, 'add_columns') );
+        add_action( 'manage_'.$this->slug.'_posts_custom_column' ,  array($this, 'columns_data'), 10, 2 );
 
         add_action( 'admin_enqueue_scripts', array($this, 'admin_enqueue_scripts') );
         add_action( 'wp_enqueue_scripts', array($this, 'enqueue_styles') );
@@ -205,12 +205,9 @@ class SPONSORS
         }
     }
 
-    public function add_thumbnails_column($columns)
+    function add_columns( $columns ): array
     {
-        if ( get_current_screen()->post_type === $this->slug ) {
-            $columns = array_merge($columns, array('thumbnail' => esc_html__('Thumbnail')));
-        }
-        return $columns;
+        return array_merge( $columns, array('thumbnail' => esc_html__('Thumbnail') ) );
     }
 
     public function columns_data($column)
@@ -239,17 +236,14 @@ class SPONSORS
                 echo esc_html( $count ? $count : 0 );
                 break;
             case "thumbnail" :
-                if ( get_current_screen()->post_type === $this->slug ){
-                    echo '<div class="thumbnail">';
-                    echo $thumbnail;
-                    echo '</div>';
-                }
+                    echo '<div class="thumbnail">'.$thumbnail.'</div>';
                 break;
             case "target" :
                 if ( $target ==='_new' )
-                    echo '<span title="'.$target.'"><img src="'. plugin_dir_url( __FILE__ ).'media/external.svg" width="24" height="24"></span>';
+                    $media = $this->media_external;
                 else
-                    echo '<span title="'.$target.'"><img src="'. plugin_dir_url( __FILE__ ).'media/internal.svg" width="24" height="24"></span>';
+                    $media = $this->media_internal;
+                echo '<span title="'.$target.'"><img alt="icon" src="'. plugin_dir_url( __FILE__ ).'media/'. $media .'" width="18" height="18"></span>';
                 break;
 
             case "order":
@@ -325,7 +319,7 @@ class SPONSORS
                 $link = get_post_meta( $post_id, $this->redirect_to, true );
                 $counter = absint( get_post_meta( $post_id, $this->meta_count, true ) );
                 echo '<tr>';
-                echo '<td>'. strtr('<a target="_new" href="{link}">{partners_title}</a>', ['{link}' => $link, '{partners_title}' => get_the_title($post_id)]).'</td>';
+                echo '<td><a target="_new" href="'.$link.'">'.get_the_title($post_id).'</a></td>';
                 echo '<td>'.$counter.'</td>';
                 echo '</tr>';
             endforeach;
